@@ -8,4 +8,4 @@
 2. Veiw Results as charts
   - Injuries vs Month
   - Injuries vs Shifts
-  - Sections vs Time(Months) (Multiple graphs)
+  - Sections vs Months _(Multiple graphs)_
