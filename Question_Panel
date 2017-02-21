@@ -1,5 +1,0 @@
-package End_User;
-import java.awt.Panel;
-  protected class Question_Panel extends Panel{
-    protected static Question_Panel(String s,)
-  }
