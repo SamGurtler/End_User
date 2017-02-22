@@ -3,18 +3,17 @@ import java.awt.Panel;
 import java.awt.Label;
 import java.awt.CheckboxGroup;
 import java.awt.Checkbox;
-	protected class Question_Panel extends Panel{
+	public class Question_Panel extends Panel{
 		private Label Question;
 		private CheckboxGroup CBG = new CheckboxGroup();
-		Question(String Question){
-				this.Question.setText(Question);
+		protected Question_Panel(String Question1){
+				this.Question.setText(Question1);
 				add(this.Question);
-				CBG.add(new Checkbox("Safe",CBG,false));
-				CBG.add(new Checkbox("Unsafe",CBG,false));
-				CBG.add(new Checkbox("Unobserved",CBG,false));
-				add(CBG);
+				add(new Checkbox("Safe",CBG,false));
+				add(new Checkbox("Unsafe",CBG,false));
+				add(new Checkbox("Unobserved",CBG,false));
 		}
-		String getAnswer(){
+		protected String getAnswer(){
 			return CBG.getSelectedCheckbox().getLabel();
 		}
 		
