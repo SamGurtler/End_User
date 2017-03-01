@@ -1,6 +1,17 @@
-package End_User;
-public class Main{
-	public static void main(String[] args){
-		Section s1 = new Section("Test Section",new Question_Panel("Is this a question?"),new Question_Panel("How do I answer this question?"),new Question_Panel("How do I answer a question starting with how with only three options"));
+package EndUser;
+import javax.swing.JFrame;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+	public class Main{
+		public static void main(String[] args){
+			JFrame JFrame = new JFrame();
+			ArrayList<ArrayList<Question_Panel>> Arrlst_Questions = new ArrayList<ArrayList<Question_Panel>>();
+			
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			//JFrame.setLayout();
+			JFrame.add(new Question_Panel("Is this a question?"));
+			JFrame.add(new Question_Panel("Is this a second question?"));
+			JFrame.setVisible(true);
+			JFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+		}
 	}
-}

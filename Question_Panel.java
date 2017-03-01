@@ -1,23 +1,29 @@
-package End_User;
-import java.awt.Panel;
-import java.awt.Label;
-import java.awt.CheckboxGroup;
-import java.awt.Checkbox;
-	public class Question_Panel extends Panel{
-		private Label Question;
-		private CheckboxGroup CBG = new CheckboxGroup();
-		protected Question_Panel(String Question1){
-				this.Question.setText(Question1);
+package EndUser;
+import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+import javax.swing.JPanel;
+public class Question_Panel extends JPanel{
+			private JLabel Question;
+			private ButtonGroup CBG = new ButtonGroup();
+			protected Question_Panel(String Question){
+				this.Question = new JLabel(Question);
 				add(this.Question);
-				add(new Checkbox("Safe",CBG,false));
-				add(new Checkbox("Unsafe",CBG,false));
-				add(new Checkbox("Unobserved",CBG,false));
+				JRadioButton Safe = new JRadioButton("Safe",false);
+				JRadioButton Unsafe = new JRadioButton("Unsafe",false);
+				JRadioButton Unobserved = new JRadioButton("Unobserved",false);
+				CBG.add(Safe);
+				CBG.add(Unsafe);
+				CBG.add(Unobserved);
+				add(Safe);
+				add(Unsafe);
+				add(Unobserved);
+				setVisible(true);
+				setLayout(new java.awt.FlowLayout());
+			}
+			protected String getAnswer(){
+				return ((JRadioButton) CBG.getSelection()).getText();
+			}
 		}
-		protected String getAnswer(){
-			return CBG.getSelectedCheckbox().getLabel();
-		}
-		
-	}
- 
  
  
