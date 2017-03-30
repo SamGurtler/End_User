@@ -18,21 +18,27 @@ public class Question_Panel extends JPanel{
 				CBG.add(Safe);
 				CBG.add(Unsafe);
 				CBG.add(Unobserved);
-				FlowLayout FlwLyt = new FlowLayout();
+				/*FlowLayout FlwLyt = new FlowLayout();
 				JPanel Question_Panel = new JPanel(FlwLyt);
 				Question_Panel.add(Safe);
 				Question_Panel.add(Unsafe);
-				Question_Panel.add(Unobserved);
+				Question_Panel.add(Unobserved);*/
 				setVisible(true);
 				/*SpringLayout SprngLyt = new SpringLayout();
 				SprngLyt.addLayoutComponent("Question",this.Question);
 				SprngLyt.addLayoutComponent(Question_Panel,FlwLyt);*/
 				GroupLayout GrpLyt = new GroupLayout(this);
-				GrpLyt.addLayoutComponent("Question",this.Question);
-				GrpLyt.addLayoutComponent(Question_Panel,FlwLyt);
+				/*this.validate();
+				System.out.println(this.Question.getWidth());
+				GrpLyt.setHorizontalGroup(GrpLyt.createSequentialGroup().addComponent(this.Question).addGap((this.Question.getWidth()+Safe.getWidth()+Unsafe.getWidth()+Unobserved.getWidth())/6-this.Question.getWidth()).addGroup(GrpLyt.createParallelGroup().addComponent(Safe).addComponent(Unsafe).addComponent(Unobserved)));*/
+				//GrpLyt.addLayoutComponent("Question",this.Question);
+				//GrpLyt.addLayoutComponent(Question_Panel,FlwLyt);
 				GrpLyt.setAutoCreateContainerGaps(true);
 				add(this.Question);
-				add(Question_Panel);
+				add(Safe);
+				add(Unsafe);
+				add(Unobserved);
+				//add(Question_Panel);
 				//setLayout(SprngLyt);
 			}
 			protected String getAnswer(){

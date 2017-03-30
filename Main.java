@@ -13,11 +13,14 @@ import java.awt.GridLayout;
 			Arrlst_Questions.add(new ArrayList<Question_Panel>());
 			Arrlst_Questions.get(0).add(new Question_Panel("Is this a question?"));
 			Arrlst_Questions.get(0).add(new Question_Panel("Is this a second question?"));
+			Arrlst_Questions.get(0).add(new Question_Panel("Pika Pika?"));
 			for(int count = 0;Arrlst_Questions.get(0).size()>count;count++){
 				JFrame.add(Arrlst_Questions.get(0).get(count));
 			}
-			int[] size = get_Size(Arrlst_Questions,1);
-			JFrame.setSize(size[0],size[1]);
+			//JFrame.pack();
+			//int[] size = get_Size(Arrlst_Questions,1);
+			//JFrame.setSize(size[0],size[1]);
+			JFrame.pack();
 			JFrame.setVisible(true);
 			JFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		}
