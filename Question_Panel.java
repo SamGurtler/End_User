@@ -18,15 +18,7 @@ public class Question_Panel extends JPanel{
 				CBG.add(Safe);
 				CBG.add(Unsafe);
 				CBG.add(Unobserved);
-				/*FlowLayout FlwLyt = new FlowLayout();
-				JPanel Question_Panel = new JPanel(FlwLyt);
-				Question_Panel.add(Safe);
-				Question_Panel.add(Unsafe);
-				Question_Panel.add(Unobserved);*/
 				setVisible(true);
-				/*SpringLayout SprngLyt = new SpringLayout();
-				SprngLyt.addLayoutComponent("Question",this.Question);
-				SprngLyt.addLayoutComponent(Question_Panel,FlwLyt);*/
 				GroupLayout GrpLyt = new GroupLayout(this);
 				/*this.validate();
 				System.out.println(this.Question.getWidth());
@@ -38,8 +30,6 @@ public class Question_Panel extends JPanel{
 				add(Safe);
 				add(Unsafe);
 				add(Unobserved);
-				//add(Question_Panel);
-				//setLayout(SprngLyt);
 			}
 			protected String getAnswer(){
 				return ((JRadioButton) CBG.getSelection()).getText();
