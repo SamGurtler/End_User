@@ -17,15 +17,20 @@ import javax.swing.JLabel;
 			JFrame.setLayout(new GridLayout(0,1));
 			Scanner scan = new Scanner(new File("./Questions.txt"));
 			for(int counter = -1;scan.hasNext();counter+=0){
-				if(scan.hasNext(":")){
+				if(scan.hasNext(".*:?")){
 					counter++;
 					scan.useDelimiter(":");
 					Arrlst_Sections.add(new JLabel(scan.nextLine()));
 				}
+				scan.useDelimiter(".*/?");
 				Arrlst_Questions.get(counter).add(new Question_Panel(scan.nextLine()));
 			}
-			for(int count = 0;Arrlst_Questions.get(0).size()>count;count++){
-				JFrame.add(Arrlst_Questions.get(0).get(count));
+			for(int count = 0;Arrlst_Sections.size()>count;count++){
+				Arrlst_Sections.get(count).setHorizontalAlignment((int)Arrlst_Sections.get(count).CENTER_ALIGNMENT);
+				JFrame.add(Arrlst_Sections.get(count));
+				for(int counter = 0;Arrlst_Questions.get(count).size()>counter;counter++){
+					JFrame.add(Arrlst_Questions.get(count).get(counter));
+				}
 			}
 			JFrame.pack();
 			JFrame.setVisible(true);
