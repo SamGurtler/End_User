@@ -7,33 +7,33 @@ import java.awt.GridLayout;
 import javax.swing.SpringLayout;
 import javax.swing.GroupLayout;
 import java.awt.FlowLayout;
+import java.util;
+import javax.swing.AbstractButton;
 public class Question_Panel extends JPanel{
 			private JLabel Question;
 			private ButtonGroup CBG = new ButtonGroup();
+			private GroupLayout GrpLyt = new GroupLayout(this);
+			private JRadioButton[] Answers = {new JRadioButton("Safe",false), new JRadioButton("Unsafe",false), new JRadioButton("Unobserved",false)};
 			protected Question_Panel(String Question){
 				this.Question = new JLabel(Question);
-				JRadioButton Safe = new JRadioButton("Safe",false);
-				JRadioButton Unsafe = new JRadioButton("Unsafe",false);
-				JRadioButton Unobserved = new JRadioButton("Unobserved",false);
-				CBG.add(Safe);
-				CBG.add(Unsafe);
-				CBG.add(Unobserved);
+				for(JRadioButton button : Answers){
+					CBG.add(button);
+				}
 				setVisible(true);
-				GroupLayout GrpLyt = new GroupLayout(this);
-				/*this.validate();
-				System.out.println(this.Question.getWidth());
-				GrpLyt.setHorizontalGroup(GrpLyt.createSequentialGroup().addComponent(this.Question).addGap((this.Question.getWidth()+Safe.getWidth()+Unsafe.getWidth()+Unobserved.getWidth())/6-this.Question.getWidth()).addGroup(GrpLyt.createParallelGroup().addComponent(Safe).addComponent(Unsafe).addComponent(Unobserved)));*/
-				//GrpLyt.addLayoutComponent("Question",this.Question);
-				//GrpLyt.addLayoutComponent(Question_Panel,FlwLyt);
-				GrpLyt.setAutoCreateContainerGaps(true);
 				add(this.Question);
-				add(Safe);
-				add(Unsafe);
-				add(Unobserved);
+				for(JRadioButton button : Answers){
+					add(button);
+				}
 			}
 			protected String getAnswer(){
 				return ((JRadioButton) CBG.getSelection()).getText();
 			}
+			protected void addGap(){
+				int sizeOfGap = Question.getFontMetrics(Question.getFont()).stringWidth(Question.getText());
+				for(JRadioButton button : Answers){
+					sizeOfGap += button.getFontMetrics(button.getFont()).stringWidth(button.getText());
+				}
+				sizeOfGap = (this.getWidth()-sizeOfGap)/6;
+				GrpLyt.setHorizontalGroup(GrpLyt.createSequentialGroup().addComponent(Question).addGap(sizeOfGap).addGroup(GrpLyt.createParallelGroup().addComponent(Answers[0]).addComponent(Answers[1]).addComponent(Answers[2])));
+			}
 		}
- 
- 
