@@ -33,6 +33,11 @@ import javax.swing.JLabel;
 				}
 			}
 			JFrame.pack();
+			for(int count = 0;Arrlst_Sections.size()>count;count++){
+				for(int counter = 0;Arrlst_Questions.get(count).size()>counter;counter++){
+					Arrlst_Questions.get(count).get(counter).addGap();
+				}
+			}
 			JFrame.setVisible(true);
 			JFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		}
