@@ -21,7 +21,6 @@ import javax.swing.GroupLayout;
 			ArrayList<ArrayList<JRadioButton[]>> Arrlst_Button = new ArrayList<ArrayList<JRadioButton[]>>();
 			JRadioButton[] Buttons = {new JRadioButton("Safe",false), new JRadioButton("Unsafe",false), new JRadioButton("Unobserved",false)};
 			ArrayList<ArrayList<JLabel>> Arrlst_JLabel = new ArrayList<ArrayList<JLabel>>();*/
-			ArrayList<GroupLayout> Arrlst_GrpLyt = new ArrayList<GroupLayout>();
 			ArrayList<JLabel> Arrlst_Sections = new ArrayList<JLabel>();
 			Scanner scan = new Scanner(new File("./Questions.txt"));
 			Pattern p = Pattern.compile("[^:]+:");
@@ -49,17 +48,24 @@ import javax.swing.GroupLayout;
 					count++;*/
 				}
 			}
+			ArrayList<GroupLayout> Arrlst_GrpLyt = new ArrayList<GroupLayout>();
 			for(int count = 0;Arrlst_Sections.size()>count;count++){
 				Arrlst_Sections.get(count).setHorizontalAlignment((int)Arrlst_Sections.get(count).CENTER_ALIGNMENT);
 				JFrame.add(new JFrame());
-				Arrlst_GrpLyt.add(new GroupLayout(JFrame.get(count)));
+				Arrlst_GrpLyt.add(new GroupLayout(JFrame.get(count).getContentPane()));
 				System.out.println("What JLabel may actually say:"+Arrlst_Sections.get(count).getText());
 				GroupLayout.SequentialGroup Order = Arrlst_GrpLyt.get(count).createSequentialGroup();
 				Order.addComponent(Arrlst_Sections.get(count));
 				for(int count1 = 0;Arrlst_Questions.get(count).size()>count1;count1++){
 					Order.addComponent(Arrlst_Questions.get(count).get(count1));
 				}
+				GroupLayout.ParallelGroup Order2 = Arrlst_GrpLyt.get(count).createParallelGroup();
+				for(int count1 = 0;Arrlst_Questions.get(count).size()>count1;count1++){
+					Order2.addComponent(Arrlst_Questions.get(count).get(count1));
+				}
+				Arrlst_GrpLyt.get(count).setHorizontalGroup(Arrlst_GrpLyt.get(count).createParallelGroup().addComponent(Arrlst_Sections.get(count)).addGroup(Order2));
 				Arrlst_GrpLyt.get(count).setVerticalGroup(Order);
+				JFrame.get(count).getContentPane().setLayout(Arrlst_GrpLyt.get(count));
 				JFrame.get(count).add(Arrlst_Sections.get(count));
 				for(int count1 = 0;Arrlst_Questions.get(count).size()>count1;count1++){
 					JFrame.get(count).add(Arrlst_Questions.get(count).get(count1));
@@ -67,7 +73,6 @@ import javax.swing.GroupLayout;
 				}
 				JFrame.get(count).setDefaultLookAndFeelDecorated(true);
 				JFrame.get(count).setDefaultCloseOperation(JFrame.get(count).DISPOSE_ON_CLOSE);
-				JFrame.get(count).setLayout(Arrlst_GrpLyt.get(count));
 				JFrame.get(count).pack();
 				JFrame.get(count).setVisible(true);
 			}
