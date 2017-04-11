@@ -1,9 +1,8 @@
 package EndUser;
 import javax.swing.JFrame;
-//import java.awt.FlowLayout;
+import java.awt.CardLayout;
 import java.util.ArrayList;
-//import javax.swing.JPanel;
-//import java.awt.GridLayout;
+import javax.swing.JPanel;
 import java.util.Scanner;
 import java.io.File;
 import javax.swing.JLabel;
@@ -15,7 +14,11 @@ import javax.swing.JRadioButton;
 import javax.swing.GroupLayout;
 	public class Main{
 		public static void main(String[] args)throws java.io.FileNotFoundException{
-			ArrayList<JFrame> JFrame = new ArrayList<JFrame>();
+			JFrame JFrame = new JFrame();
+			CardLayout menuPages = new CardLayout();
+			CardLayout pages = new CardLayout();
+			JPanel[] Menu = new JPanel[3];
+			ArrayList<JPanel> JPanel = new ArrayList<JPanel>();
 			ArrayList<ArrayList<ButtonGroup>> Arrlst_ButtonGroup = new ArrayList<ArrayList<ButtonGroup>>();
 			ArrayList<ArrayList<JRadioButton[]>> Arrlst_Button = new ArrayList<ArrayList<JRadioButton[]>>();
 			JRadioButton[] Buttons = {new JRadioButton("Safe",false), new JRadioButton("Unsafe",false), new JRadioButton("Unobserved",false)};
@@ -51,11 +54,11 @@ import javax.swing.GroupLayout;
 			ArrayList<GroupLayout> Arrlst_GrpLyt = new ArrayList<GroupLayout>();
 			for(int count = 0;Arrlst_Sections.size()>count;count++){
 				Arrlst_Sections.get(count).setHorizontalAlignment((int)Arrlst_Sections.get(count).CENTER_ALIGNMENT);
-				JFrame.add(new JFrame());
-				Arrlst_GrpLyt.add(new GroupLayout(JFrame.get(count).getContentPane()));
+				JPanel.add(new JPanel());
+				Arrlst_GrpLyt.add(new GroupLayout(JPanel.get(count)));
 				Arrlst_GrpLyt.get(count).setAutoCreateContainerGaps(true); 
 				System.out.println("What JLabel may actually say:"+Arrlst_Sections.get(count).getText());
-				GroupLayout.SequentialGroup verticalGroup = Arrlst_GrpLyt.get(count).createSequentialGroup();
+				GroupLayout.ParallelGroup verticalGroup = Arrlst_GrpLyt.get(count).createParallelGroup();
 				GroupLayout.SequentialGroup verticalJLabel = Arrlst_GrpLyt.get(count).createSequentialGroup();
 				for(int count1 = 0;Arrlst_JLabel.get(count).size()>count1;count1++){
 					verticalJLabel.addComponent(Arrlst_JLabel.get(count).get(count1));
@@ -72,34 +75,41 @@ import javax.swing.GroupLayout;
 				verticalGroup.addGroup(verticalJRadioButton);
 				Arrlst_GrpLyt.get(count).setVerticalGroup(Arrlst_GrpLyt.get(count).createSequentialGroup().addComponent(Arrlst_Sections.get(count)).addGroup(verticalGroup));
 				
-				GroupLayout.ParallelGroup horizontalGroup = Arrlst_GrpLyt.get(count).createParallelGroup(GroupLayout.Alignment.LEADING);
-				horizontalGroup.addComponent(Arrlst_Sections.get(count));
-				GroupLayout.SequentialGroup[] horizontalJRadioButton = new GroupLayout.SequentialGroup[Arrlst_Button.get(count).size()];
-				for(int count1 = 0;Arrlst_Button.get(count).size()>count1;count1++){
-					GroupLayout.SequentialGroup tmpHorizontalButtonGroup = Arrlst_GrpLyt.get(count).createSequentialGroup();
-					for(JRadioButton button : Arrlst_Button.get(count).get(count1)){
-						tmpHorizontalButtonGroup.addComponent(button);
-					}
-					horizontalJRadioButton[count1] = Arrlst_GrpLyt.get(count).createSequentialGroup();
-					horizontalJRadioButton[count1].addComponent(Arrlst_JLabel.get(count).get(count1));
-					horizontalJRadioButton[count1].addGroup(tmpHorizontalButtonGroup);
+				GroupLayout.SequentialGroup horizontalGroup = Arrlst_GrpLyt.get(count).createSequentialGroup();
+				horizontalGroup.addGroup(Arrlst_GrpLyt.get(count).createParallelGroup(GroupLayout.Alignment.CENTER)).addComponent(Arrlst_Sections.get(count));
+				GroupLayout.ParallelGroup horizontalJLabel = Arrlst_GrpLyt.get(count).createParallelGroup();
+				for(int count1 = 0;Arrlst_JLabel.get(count).size()>count1;count1++){
+					horizontalJLabel.addComponent(Arrlst_JLabel.get(count).get(count1));
 				}
-				for(GroupLayout.SequentialGroup group: horizontalJRadioButton){
-					horizontalGroup.addGroup(group);
+				horizontalGroup.addGroup(horizontalJLabel);
+				for(int count1 = 0;3>count1;count1++){
+					GroupLayout.ParallelGroup tmpHorizontalButtonGroup = Arrlst_GrpLyt.get(count).createParallelGroup();
+					for(int count2 = 0;Arrlst_Button.get(count).size()>count2;count2++){
+						tmpHorizontalButtonGroup.addComponent(Arrlst_Button.get(count).get(count2)[count1]);
+					}
+					horizontalGroup.addGroup(tmpHorizontalButtonGroup);
 				}
 				Arrlst_GrpLyt.get(count).setHorizontalGroup(horizontalGroup);
-				JFrame.get(count).getContentPane().setLayout(Arrlst_GrpLyt.get(count));
-				JFrame.get(count).add(Arrlst_Sections.get(count));
+				JPanel.get(count).setLayout(Arrlst_GrpLyt.get(count));
+				JPanel.get(count).add(Arrlst_Sections.get(count));
 				for(int count1 = 0;Arrlst_JLabel.get(count).size()>count1;count1++){
-					JFrame.get(count).add(Arrlst_JLabel.get(count).get(count1));
+					JPanel.get(count).add(Arrlst_JLabel.get(count).get(count1));
 					for(JRadioButton button : Arrlst_Button.get(count).get(count1)){
-						JFrame.get(count).add(button);
+						JPanel.get(count).add(button);
 					}
 				}
-				JFrame.get(count).setDefaultLookAndFeelDecorated(true);
-				JFrame.get(count).setDefaultCloseOperation(JFrame.get(count).DISPOSE_ON_CLOSE);
-				JFrame.get(count).pack();
-				JFrame.get(count).setVisible(true);
+				JPanel.get(count).validate();
+				pages.addLayoutComponent(JPanel.get(count),/*Arrlst_GrpLyt.get(count).toString()*/null);
 			}
+			Menu[1] = new JPanel(pages);
+			for(int count = 0;JPanel.size()>count;count++){
+				Menu[1].add(JPanel.get(count));
+			}
+			JFrame.add(Menu[1]);
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			JFrame.pack();
+			JFrame.setVisible(true);
+			pages.first(Menu[1]);
 		}
 	}
