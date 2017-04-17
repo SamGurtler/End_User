@@ -98,7 +98,7 @@ import javax.swing.GroupLayout;
 						JPanel.get(count).add(button);
 					}
 				}
-				JPanel.get(count).validate();
+				//JPanel.get(count).validate();
 				pages.addLayoutComponent(JPanel.get(count),/*Arrlst_GrpLyt.get(count).toString()*/null);
 			}
 			Menu[1] = new JPanel(pages);
